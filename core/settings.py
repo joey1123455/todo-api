@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #3rd party
+    'rest_framework',
+    'corsheaders',
     #local
     'todos.apps.TodosConfig',
 ]
@@ -54,6 +57,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -111,6 +115,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
+
+CORS_ALLOWED_ORIGINS = (
+    'http://127.0.0.1:8000',    #backend domain
+    'http://127.0.0.1:3000',    #frontend domain
+)
+
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:3000']
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
